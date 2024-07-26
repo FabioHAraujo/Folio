@@ -3,7 +3,7 @@ import useLocalStorage from 'use-local-storage';
 import "./App.css";
 import Toggle from './components/Toggle';
 
-export const App = () => {
+const App = () => {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [isDark, setIsDark] = useLocalStorage("isDark", preference)
 
@@ -30,10 +30,12 @@ export const App = () => {
           <Toggle isChecked={isDark} handleChange={()=>setIsDark(!isDark)}/>
         </div>
       </div>
-      <h1 className='title'>Bem-Vindo ao Meu Currículo Virutal</h1>
+      <h1 className='title'>Bem-Vindo ao Meu Currículo Virtual</h1>
       <div className='box'>
         <h2>Até o fim do dia será um portifólio</h2>
       </div>
     </div>
   )
 }
+
+export default App;
