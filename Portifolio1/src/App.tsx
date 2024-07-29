@@ -8,7 +8,7 @@ const App = () => {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [isDark, setIsDark] = useLocalStorage("isDark", preference);
   const [age, setAge] = useState(0);
-  const [isProfessional, setIsProfessional] = useState(false);
+  const [isProfessional, setIsProfessional] = useState(true);
   const [bio, setBio] = useState({ professionalBio: '', detailedBio: '' });
 
   const handleDownload = () => {
@@ -50,6 +50,14 @@ const App = () => {
   // Embaralhar a lista de serviços
   const shuffledServices = services.sort(() => 0.5 - Math.random());
 
+  const handleToggleChange = () => {
+    console.log('Current state before change:', isProfessional);
+    setIsProfessional(prevState => {
+      console.log('State after change:', !prevState);
+      return !prevState;
+    });
+  };
+
   return (
     <div className='App' data-theme={isDark ? "dark" : "light"}>
       {/* // Header */}
@@ -65,8 +73,6 @@ const App = () => {
           <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)}/>
         </div>
       </div>
-      <h1 className='title'>Bem-Vindo ao Meu Currículo Virtual</h1>
-      {/* // Sobre Mim */}
       <div className='about'>
         <div className='personal'>
           <img src={profileImage} alt="Fábio Henrique Araújo" className='profile-pic'/>
@@ -76,19 +82,25 @@ const App = () => {
         </div>
         <div className='services'>
           <h2>Sobre mim:</h2>
-          <div className='container-switch'>
-            <label className="switch">
-              <input type="checkbox" checked={isProfessional} onChange={() => setIsProfessional(!isProfessional)} />
-              <span className="slider"></span>
-              Forma Profissional e Resumida? (Sim | Não)
+          <div className='switch-container'>
+            <input
+              type="checkbox"
+              id="switch"
+              className='switch'
+              checked={isProfessional}
+              onChange={handleToggleChange}
+            />
+            <label htmlFor='switch' className="switch-mark">
+              {isProfessional ? 'Formato Profissional' : 'Formato Biografia'}
             </label>
           </div>
           <p className='personal-text'>
             {isProfessional ? bio.professionalBio : bio.detailedBio}
           </p>
+          <h3 className='hospedados-titulo'>Coisas que eu hospedo:</h3>
           <ul>
             {shuffledServices.map((service, index) => (
-              <li key={index}>{service}</li>
+              <li className='hospedados' key={index}>{service}</li>
             ))}
           </ul>
         </div>
