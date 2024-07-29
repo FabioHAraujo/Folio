@@ -61,3 +61,86 @@
   background-color: var(--fg-color);
   color: var(--secondary-text-color);
 }
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  background-color: var(--toggle-fg);
+  border-radius: 34px;
+  color: var(--secondary-text-color);
+  text-shadow: 2px 2px 8px var(--primary-text-color);
+  box-shadow: var(--box-shadow);
+}
+
+.personal {
+  text-align: center;
+  margin: 20px 0;
+  flex: 1;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.services {
+  flex: 1;
+}
+
+.container-switch {
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+}
+
+.switch {
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  position: relative;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--secondary-text-color);
+  border-radius: 34px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--primary-text-color);
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-text-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.personal-text {
+  margin-top: 1rem;
+}
